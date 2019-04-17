@@ -14,6 +14,10 @@ app.get('/scripts/angular.min.js', function(req, res){
   res.sendFile(path.join(__dirname + '/node_modules/angular/angular.min.js'));
 });
 
+app.get('/scripts/angular-cookies.min.js', function(req, res){
+  res.sendFile(path.join(__dirname + '/node_modules/angular-cookies/angular-cookies.min.js'));
+});
+
 app.get('/scripts/bootstrap.min.js', function(req, res){
   res.sendFile(path.join(__dirname + '/node_modules/bootstrap/dist/js/bootstrap.min.js'));
 });
@@ -24,6 +28,10 @@ app.get('/scripts/bootstrap.bundle.min.js', function(req, res){
 
 app.get('/scripts/ui-bootstrap.js', function(req, res){
   res.sendFile(path.join(__dirname + '/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js'));
+});
+
+app.get('/app.js', function(req, res){
+  res.sendFile(path.join(__dirname + '/app.js'));
 });
 
 app.get('/index.js', function(req, res){
