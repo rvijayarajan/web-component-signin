@@ -3,10 +3,12 @@
  	var app = angular.module("main",['wcSignin']);
 
 	app.component("app", {
-		template: '<div class="row"> '+
-						'<div class="col-sm-4"> '+
+		template: '<div class="container">'+
+					 '<div class="row"> '+
+						'<div class="col-12 col-md-4 offset-sm-4"> '+
 							'<signin cookie-config="config"></signin>'+
 						'</div>'+
+					  '</div>'+
 					'</div>',
 		controllerAs: "cntl",
 		bindings: {
