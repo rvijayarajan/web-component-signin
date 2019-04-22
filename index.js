@@ -2,37 +2,42 @@
 
  	var app = angular.module("wcSignin",['ngCookies']);
 
-	app.component("signin", {
-		templateUrl: "signin.html",
-		bindings: {
-			cookieConfig: '<'
-		},
-		controller: "SigninController"
+	app.directive("signin", function() {
+		return {
+			restrict: 'EA',
+			templateUrl: "signin.html",
+			scope: {
+				cookieConfig: '='
+			},
+			controller: "SigninController"	
+		};
 	});
 
 	app.controller("SigninController", SigninControllerFn);
 
-	SigninControllerFn.$inject = ["$scope","$cookies","$element"];
+	SigninControllerFn.$inject = ["$scope","$cookieStore","$element"];
 
 	function SigninControllerFn($scope, $cookies, $element) {
 
-		var vm = $scope.$ctrl;
+		var vm = this;
 
-		$scope.$watch('rememberUser', function(latest, oldest){
-			if(latest && angular.isDefined(vm.cookieConfig)) {
-				$cookies.put('rememberCookie',latest, vm.cookieConfig);
+		$scope.$watch('rememberUser', function(latest, oldest, scope){
+			if(latest) {
+				$cookies.put('rememberCookie',latest);
 			} else {
 				if($cookies.get('rememberCookie')) {
-					$cookies.remove('rememberCookie',vm.cookieConfig);
+					$cookies.remove('rememberCookie');
 				}
 			}
 		});
 
-		vm.$onInit = function() {
+		$scope.$watch('cookieConfig', function(latest, oldest, scope){
+			console.log(scope);
+		});
+
 			if($cookies.get('rememberCookie')) {
 				$scope.rememberUser = true;
 			}
-		};
 	}
 
 })();

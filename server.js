@@ -11,7 +11,7 @@ app.get('/scripts/jquery.min.js', function(req, res){
 });
 
 app.get('/scripts/angular.min.js', function(req, res){
-  res.sendFile(path.join(__dirname + '/node_modules/angular/angular.min.js'));
+  res.sendFile(path.join(__dirname + '/node_modules/angular/angular.js'));
 });
 
 app.get('/scripts/angular-cookies.min.js', function(req, res){

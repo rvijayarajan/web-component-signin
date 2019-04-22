@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card-body">
-    <form>
+    <form name="signinForm">
     	<div class="form-group row">
     		<label for="userEmail" class="d-none col-md-4 d-md-block col-form-label">Email</label>
 		    <div class="input-group mb-3 col-12 col-md-8">
 			  <div class="input-group-prepend">
 			    <i class="ion-md-mail input-group-text"></i>
 			  </div>
-			  <input type="email" class="form-control" id="userEmail" placeholder="Email">
+			  <input type="email" name="email" class="form-control" id="userEmail" placeholder="Email">
 			</div>
     	</div>
     	<div class="form-group row">
@@ -16,16 +16,16 @@
 			  <div class="input-group-prepend">
 			    <i class="ion-md-lock input-group-text"></i>
 			  </div>
-			  <input type="password" class="form-control" id="userPassword" placeholder="Password">
+			  <input type="password" name="password" class="form-control" id="userPassword" placeholder="Password">
 			</div>
     	</div>
     	<div class="form-group row justify-content-md-center justify-content-start">
     		<div class="col-4">
-		      <button type="submit" class="btn btn-primary">Sign in</button>
+		      <button type="submit" name="submit" class="btn btn-primary">Sign in</button>
 		    </div>
 		    <div class="w-100"></div>
     		<div class="col-12 col-md-9 custom-control custom-checkbox text-center">
-			  <input type="checkbox" class="custom-control-input" id="remember" ng-model="rememberUser">
+			  <input type="checkbox" class="custom-control-input" id="remember" name="remUser" ng-model="rememberUser">
 			  <label class="custom-control-label" for="remember">Remember Me</label>
 			</div>
 	  	</div>
