@@ -5,7 +5,8 @@
 	app.component("signin", {
 		templateUrl: "signin.html",
 		bindings: {
-			cookieConfig: '<'
+			cookieConfig: '<',
+			onSubmit: '&'
 		},
 		controller: "SigninController"
 	});
@@ -18,25 +19,35 @@
 
 		var vm = $scope.$ctrl;
 
-		$scope.$watch('rememberUser', function(latest, oldest){
-			if($scope.initialized) {
-				if(latest && angular.isDefined(vm.cookieConfig)) {
-					$cookies.put('rememberCookie',latest, vm.cookieConfig);
-				} else {
-					if($cookies.get('rememberCookie')) {
-						$cookies.remove('rememberCookie',vm.cookieConfig);
-					}
-				}	
-			}
-		});
-
 		vm.$onInit = function() {
-			if($cookies.get('rememberCookie')) {
-				$scope.rememberUser = true;
+			var rememberObj = $cookies.getObject('rememberCookie'); 
+			if(rememberObj) {
+				vm.rememberUser = true;
+				vm.email = rememberObj.username;
+				vm.password = rememberObj.password;
 			}
-			$timeout(function(){
-				$scope.initialized = true;
+		};
+
+		vm.submit = function() {
+			vm.onSubmit({
+				username: vm.email,
+				password: vm.password
 			});
+		};
+
+		vm.updateRememberPref = function() {
+			var rememberUser = vm.rememberUser;
+			if(rememberUser && angular.isDefined(vm.cookieConfig)) {
+				var rememberObj = {
+					username: vm.email,
+					password: vm.password
+				};
+				$cookies.putObject('rememberCookie',rememberObj, vm.cookieConfig);
+			} else {
+				if($cookies.getObject('rememberCookie')) {
+					$cookies.remove('rememberCookie',vm.cookieConfig);
+				}
+			}	
 		};
 	}
 

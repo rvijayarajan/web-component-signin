@@ -6,7 +6,7 @@
 		template: '<div class="container">'+
 					 '<div class="row"> '+
 						'<div class="col-12 col-md-4 offset-sm-4"> '+
-							'<signin cookie-config="config"></signin>'+
+							'<signin cookie-config="config" on-submit="onSubmit(username,password)"></signin>'+
 						'</div>'+
 					  '</div>'+
 					'</div>',
@@ -27,7 +27,11 @@
 		$scope.config = {
 			domain: 'localhost',
 			expires: new Date(date)
-		}
+		};
+
+		$scope.onSubmit = function(username, password) {
+
+		};
 		
 	}
 
